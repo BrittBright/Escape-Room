@@ -117,10 +117,19 @@ h1 {
 h1 span { color: #a5b9b3; }
 
 .briefing {
-  max-width: 390px;
+  max-width: 455px;
   margin: 0 0 3px auto;
   color: #b3c0bc;
   font-size: 14px;
+}
+
+.briefing-label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .14em;
 }
 
 .game-layout {
@@ -211,12 +220,12 @@ h1 span { color: #a5b9b3; }
 
 .hotspot.is-solved { border-color: rgba(240, 198, 107, .8); color: #ffe7a7; }
 .hotspot.is-solved .hotspot-pip { background: var(--amber); box-shadow: 0 0 9px rgba(240, 198, 107, .8); }
-.hotspot-exit { left: 7%; top: 44%; }
-.hotspot-log { left: 25%; top: 57%; }
-.hotspot-hypothesis { left: 49%; top: 47%; }
-.hotspot-flasks { left: 67%; top: 62%; }
-.hotspot-monitor { right: 8%; top: 25%; }
-.hotspot-report { right: 7%; bottom: 9%; }
+.hotspot-log { left: 16%; top: 57%; }
+.hotspot-hypothesis { left: 37%; top: 42%; }
+.hotspot-flasks { left: 54%; top: 55%; }
+.hotspot-monitor { left: 63%; top: 25%; }
+.hotspot-report { left: 72%; top: 48%; }
+.hotspot-exit { right: 1%; top: 35%; }
 
 .scene-instruction {
   display: flex;
@@ -432,6 +441,26 @@ progress::-moz-progress-bar { background: var(--accent); border-radius: 4px; }
 .data-table td { color: #d2ddd8; }
 .data-table tbody tr:nth-child(even) { background: rgba(255,255,255,.025); }
 
+.calculation-response {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 115px;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+.calculation-response label { color: #bdccc5; font-size: 12px; font-weight: 600; }
+.calculation-response input {
+  width: 100%;
+  min-height: 43px;
+  padding: 8px 10px;
+  border: 1px solid #50676a;
+  border-radius: 6px;
+  background: #1d2d33;
+  color: var(--ink);
+  font-size: 14px;
+}
+.calculation-response input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
 .hint-area { margin-top: 13px; }
 .text-button { padding: 4px 0; border: 0; background: transparent; color: var(--accent); font-size: 12px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .hint-text { margin: 8px 0 0; padding: 10px 12px; border-left: 2px solid var(--amber); background: rgba(240, 198, 107, .08); color: #e1d3ad; font-size: 12px; }
@@ -524,18 +553,13 @@ progress::-moz-progress-bar { background: var(--accent); border-radius: 4px; }
   .scene { aspect-ratio: 1000 / 590; }
   .room-art { width: 100%; max-width: 100%; left: 0; }
   .hotspot { max-width: 47%; min-height: 30px; gap: 5px; padding: 5px 6px; font-size: 7px; }
-  .hotspot-exit { left: 7%; top: 44%; }
-  .hotspot-log { left: 25%; top: 57%; }
-  .hotspot-hypothesis { left: 49%; top: 47%; }
-  .hotspot-flasks { left: 67%; top: 62%; }
-  .hotspot-monitor { right: 1%; top: 25%; }
-  .hotspot-report { right: 1%; bottom: 8%; }
   .scene-instruction { padding: 8px 12px; font-size: 10px; }
   .notebook { padding: 16px 13px 13px; }
   .clue-list { grid-template-columns: 1fr; }
   .footer { flex-direction: column; gap: 7px; padding-bottom: 20px; font-size: 7px; }
   .puzzle-dialog { padding: 20px 17px 18px; }
   .match-row { grid-template-columns: 1fr; gap: 5px; }
+  .calculation-response { grid-template-columns: 1fr 90px; gap: 8px; }
   .dialog-actions { align-items: stretch; }
   .button { padding-right: 11px; padding-left: 11px; }
   .keypad-form { flex-direction: column; }

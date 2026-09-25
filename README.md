@@ -24,6 +24,8 @@ This standalone app does not send scores or answers to Canvas. If completion nee
 ## Included interactions
 
 - Six clickable room hotspots: five science puzzles and the exit keypad
+- Numbered stations guide learners from left to right before they reach the final keypad
+- A single investigation connects pond observations to a controlled nitrate experiment, its results, and a bounded conclusion
 - Optional hints and explanatory retry feedback
 - A notebook that records recovered digits
 - A five-digit final override
@@ -33,4 +35,4 @@ This standalone app does not send scores or answers to Canvas. If completion nee
 
 ## Answer key
 
-The master code is 32431. The code is stored in the client-side game script so it can be checked without a server. Do not use this version to secure graded answers.
+The master code is 32431. For station 4, the control mean is 3 pg/cell and the added-nitrate mean is 6 pg/cell, so their difference is 3. The code is stored in the client-side game script so it can be checked without a server. Do not use this version to secure graded answers.

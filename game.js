@@ -2,7 +2,7 @@
   "use strict";
 
   const CODE = "32431";
-  const STORAGE_KEY = "bioResetEscapeRoomProgressV1";
+  const STORAGE_KEY = "bioResetEscapeRoomProgressV2";
   const digitsByPuzzle = {
     observations: "3",
     hypothesis: "2",
@@ -59,22 +59,23 @@
     },
     data: {
       kicker: "SYSTEM CHECK 04 / ANALYZE",
-      title: "Read the growth data",
-      prompt: "The monitor shows bacterial density over four equal 12-hour intervals. Calculate the rate for each interval (change in density ÷ change in time), then choose the interval with the highest rate.",
-      hint: "All intervals are 12 hours long, so the interval with the largest density increase also has the largest rate. Check the final interval carefully.",
+      title: "Compare the experimental results",
+      prompt: "The table shows microcystin production per cell in ten control flasks and ten flasks receiving added nitrate. Calculate the mean for each group, then subtract the control mean from the nitrate-group mean. Enter the difference in pg/cell; that value is this system's digit.",
+      hint: "Add each group's ten measurements and divide each total by 10. Then subtract the control mean from the nitrate-group mean.",
       html: [
-        "<div class='data-table-wrap'><table class='data-table'><caption>Bacterial density (×10⁴ cells/mL)</caption><thead><tr><th scope='col'>Interval</th><th scope='col'>Time</th><th scope='col'>Density</th></tr></thead><tbody>",
-        "<tr><td>1</td><td>0–12 hours</td><td>1.5 → 3.0</td></tr>",
-        "<tr><td>2</td><td>12–24 hours</td><td>3.0 → 9.0</td></tr>",
-        "<tr><td>3</td><td>24–36 hours</td><td>9.0 → 27.0</td></tr>",
-        "<tr><td>4</td><td>36–48 hours</td><td>27.0 → 42.0</td></tr>",
+        "<div class='data-table-wrap'><table class='data-table'><caption>Microcystin production per cell (pg/cell)</caption><thead><tr><th scope='col'>Flask</th><th scope='col'>Control</th><th scope='col'>+50 μM nitrate</th></tr></thead><tbody>",
+        "<tr><th scope='row'>1</th><td>3</td><td>6</td></tr>",
+        "<tr><th scope='row'>2</th><td>2</td><td>5</td></tr>",
+        "<tr><th scope='row'>3</th><td>4</td><td>7</td></tr>",
+        "<tr><th scope='row'>4</th><td>3</td><td>6</td></tr>",
+        "<tr><th scope='row'>5</th><td>3</td><td>6</td></tr>",
+        "<tr><th scope='row'>6</th><td>2</td><td>5</td></tr>",
+        "<tr><th scope='row'>7</th><td>4</td><td>7</td></tr>",
+        "<tr><th scope='row'>8</th><td>3</td><td>6</td></tr>",
+        "<tr><th scope='row'>9</th><td>3</td><td>6</td></tr>",
+        "<tr><th scope='row'>10</th><td>3</td><td>6</td></tr>",
         "</tbody></table></div>",
-        "<fieldset class='answer-set'><legend>Which interval has the greatest rate of growth?</legend>",
-        "<label class='answer-option'><input type='radio' name='interval' value='1'> Interval 1: 0–12 hours</label>",
-        "<label class='answer-option'><input type='radio' name='interval' value='2'> Interval 2: 12–24 hours</label>",
-        "<label class='answer-option'><input type='radio' name='interval' value='3'> Interval 3: 24–36 hours</label>",
-        "<label class='answer-option'><input type='radio' name='interval' value='4'> Interval 4: 36–48 hours</label>",
-        "</fieldset>"
+        "<div class='calculation-response'><label for='data-difference'>Nitrate mean − control mean (pg/cell)</label><input id='data-difference' name='data-difference' type='number' min='0' max='9' step='1' inputmode='numeric' required></div>"
       ].join("")
     },
     conclusion: {
@@ -228,8 +229,8 @@
         body.querySelector("#role-constants").value === "conditions";
     }
     if (currentPuzzle === "data") {
-      const selected = body.querySelector("input[name='interval']:checked");
-      return Boolean(selected && selected.value === "3");
+      const response = body.querySelector("#data-difference");
+      return Boolean(response && Number(response.value) === 3);
     }
     if (currentPuzzle === "conclusion") {
       const selected = body.querySelector("input[name='critique']:checked");
@@ -242,7 +243,7 @@
     if (currentPuzzle === "observations") return "Not quite. Include every direct measurement or description, and leave out explanations of causes.";
     if (currentPuzzle === "hypothesis") return "Look for the statement that names the nitrate change, a measurable result, and a proposed mechanism.";
     if (currentPuzzle === "design") return "One or more matches need another look. What is changed, what is measured, and what stays the same?";
-    if (currentPuzzle === "data") return "Try the rates again. Calculate each density change and divide by 12 hours.";
+    if (currentPuzzle === "data") return "Recheck both column means. Add the ten values in each group, divide each total by 10, then subtract the control mean from the nitrate mean.";
     if (currentPuzzle === "conclusion") return "Check the scope of the evidence. What can a controlled flask experiment support, and what does it not establish about an entire waterway?";
     return "Check your response and try again.";
   }
@@ -251,7 +252,7 @@
     if (currentPuzzle === "observations") return "Exactly. Entries 1, 3, and 5 are measurements or descriptions. Entries 2, 4, and 6 explain possible causes.";
     if (currentPuzzle === "hypothesis") return "Correct. B gives a measurable comparison and a proposed mechanism. A is a testable prediction, but it leaves out the mechanism this challenge asks for.";
     if (currentPuzzle === "design") return "Correct. The nitrate level is changed, microcystin per cell is measured, the unamended flasks are the negative control, and the other conditions are held constant.";
-    if (currentPuzzle === "data") return "Correct. Interval 3 rises by 18.0 × 10⁴ cells/mL, or 1.5 × 10⁴ cells/mL per hour. Interval 4 rises by 15.0, so the maximum is unique.";
+    if (currentPuzzle === "data") return "Correct. The control mean is 3 pg/cell and the added-nitrate mean is 6 pg/cell, a difference of 3 pg/cell.";
     if (currentPuzzle === "conclusion") return "Correct. The experiment supports an effect under the tested flask conditions; it does not establish the only cause of local blooms or prove a complete field solution.";
     return "Correct.";
   }
