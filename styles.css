@@ -220,12 +220,12 @@ h1 span { color: #a5b9b3; }
 
 .hotspot.is-solved { border-color: rgba(240, 198, 107, .8); color: #ffe7a7; }
 .hotspot.is-solved .hotspot-pip { background: var(--amber); box-shadow: 0 0 9px rgba(240, 198, 107, .8); }
-.hotspot-log { left: 16%; top: 57%; }
-.hotspot-hypothesis { left: 37%; top: 42%; }
-.hotspot-flasks { left: 54%; top: 55%; }
-.hotspot-monitor { left: 63%; top: 25%; }
-.hotspot-report { left: 72%; top: 48%; }
-.hotspot-exit { right: 1%; top: 35%; }
+.hotspot-log { left: 12%; top: 57%; }
+.hotspot-hypothesis { left: 33%; top: 42%; }
+.hotspot-flasks { left: 50%; top: 55%; }
+.hotspot-monitor { left: 58%; top: 25%; }
+.hotspot-report { left: 67%; top: 48%; }
+.hotspot-exit { right: 6%; top: 35%; }
 
 .scene-instruction {
   display: flex;
